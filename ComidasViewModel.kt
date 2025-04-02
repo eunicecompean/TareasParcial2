@@ -17,15 +17,15 @@ import kotlinx.coroutines.launch
 class ComidasViewModel(context: Context) : ViewModel() {
     private val preferencias = Preferencias(context) // Tu clase de DataStore
 
-    // 1️⃣ Flujo con los datos del usuario guardados en preferencias
+    // Flujo con los datos del usuario guardados en preferencias
     val userData: StateFlow<Usuario> =
         preferencias.userFlow.stateIn(viewModelScope, SharingStarted.Lazily, Usuario("", 0, 0f, 0f))
 
-    // 2️⃣ Dinero actual en el monedero (observado desde preferencias)
+    //Dinero actual en el monedero (observado desde preferencias)
     private val _dineroActual = MutableStateFlow(0f)
     val dineroActual: StateFlow<Float> = _dineroActual.asStateFlow()
 
-    // 3️⃣ Lista de productos disponibles
+    // Lista de productos disponibles
     val productos = listOf(
         Comida(1, "Pizza","" ,50f),
         Comida(2, "Tacos","", 25f),
